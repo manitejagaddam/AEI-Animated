@@ -1,5 +1,6 @@
 import React from "react";
 import KeyboardScroll from "@/components/KeyboardScroll";
+import KeyboardScrollAni from "@/components/KeyboardScrollAni";
 
 export const metadata = {
   title: "AEI Fireguard | Premium Industrial Suppression Systems",
@@ -10,7 +11,8 @@ export default function Home() {
   return (
     <main className="relative min-h-screen text-white font-sans selection:bg-white/20">
       {/* The Core Scrollytelling Animation Section */}
-      <KeyboardScroll />
+      {/* <KeyboardScroll /> */}
+      <KeyboardScrollAni />
     </main>
   );
 }
