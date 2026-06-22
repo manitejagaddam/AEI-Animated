@@ -1,6 +1,6 @@
 import React from "react";
-import KeyboardScroll from "@/components/KeyboardScroll";
 import KeyboardScrollAni from "@/components/KeyboardScrollAni";
+
 
 export const metadata = {
   title: "AEI Fireguard | Premium Industrial Suppression Systems",

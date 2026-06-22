@@ -157,23 +157,7 @@ export default function KeyboardScrollAni() {
     return () => window.removeEventListener("resize", handleResize);
   }, [activeFrame, images, drawFrame]);
 
-  // 4. Interpolate typography values
-  // Fade beats:
-  // Beat 1 (0%): Center
-  const opacity1 = useTransform(scrollYProgress, [0, 0.12, 0.18], [1, 1, 0]);
-  const y1 = useTransform(scrollYProgress, [0, 0.12, 0.18], [0, 0, -20]);
 
-  // Beat 2 (25%): Left
-  const opacity2 = useTransform(scrollYProgress, [0.15, 0.22, 0.32, 0.40], [0, 1, 1, 0]);
-  const y2 = useTransform(scrollYProgress, [0.15, 0.22, 0.32, 0.40], [20, 0, 0, -20]);
-
-  // Beat 3 (60%): Right
-  const opacity3 = useTransform(scrollYProgress, [0.45, 0.54, 0.66, 0.74], [0, 1, 1, 0]);
-  const y3 = useTransform(scrollYProgress, [0.45, 0.54, 0.66, 0.74], [20, 0, 0, -20]);
-
-  // Beat 4 (90%): Center CTA
-  const opacity4 = useTransform(scrollYProgress, [0.80, 0.90, 1.0], [0, 1, 1]);
-  const y4 = useTransform(scrollYProgress, [0.80, 0.90, 1.0], [20, 0, 0]);
 
   return (
     <div
@@ -206,13 +190,14 @@ export default function KeyboardScrollAni() {
       )}
 
       {/* Sticky Canvas Viewport */}
-      <div className="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center">
-        <canvas
-          ref={canvasRef}
-          className="w-full h-full max-w-[100vw] max-h-[100vh] block"
-          style={{ mixBlendMode: "normal" }}
-        />
-
+      <div className="sticky top-0 w-full h-[100dvh] overflow-hidden flex items-center justify-center p-4 md:p-8">
+        <div className="w-full max-w-4xl max-h-[75vh] aspect-video relative flex items-center justify-center bg-black/20 rounded-2xl border border-white/10 shadow-2xl overflow-hidden backdrop-blur-sm">
+          <canvas
+            ref={canvasRef}
+            className="w-full h-full block"
+            style={{ mixBlendMode: "normal" }}
+          />
+        </div>
       </div>
     </div>
   );

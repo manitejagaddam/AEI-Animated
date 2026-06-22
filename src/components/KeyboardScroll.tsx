@@ -112,7 +112,7 @@ export default function KeyboardScroll() {
     // Clear canvas
     ctx.clearRect(0, 0, rect.width, rect.height);
 
-    // Contain fit logic
+    // Cover fit logic
     const imgWidth = img.width;
     const imgHeight = img.height;
     const canvasWidth = rect.width;
@@ -127,13 +127,13 @@ export default function KeyboardScroll() {
     let offsetY = 0;
 
     if (canvasRatio > imgRatio) {
-      // Canvas is wider than image aspect ratio -> bound by height
-      drawWidth = canvasHeight * imgRatio;
-      offsetX = (canvasWidth - drawWidth) / 2;
-    } else {
-      // Canvas is taller than image aspect ratio -> bound by width
+      // Canvas is wider than image aspect ratio -> bound by width (crop top/bottom)
       drawHeight = canvasWidth / imgRatio;
       offsetY = (canvasHeight - drawHeight) / 2;
+    } else {
+      // Canvas is taller than image aspect ratio -> bound by height (crop left/right)
+      drawWidth = canvasHeight * imgRatio;
+      offsetX = (canvasWidth - drawWidth) / 2;
     }
 
     ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
@@ -206,12 +206,14 @@ export default function KeyboardScroll() {
       )}
 
       {/* Sticky Canvas Viewport */}
-      <div className="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center">
-        <canvas
-          ref={canvasRef}
-          className="w-full h-full max-w-[100vw] max-h-[100vh] block"
-          style={{ mixBlendMode: "normal" }}
-        />
+      <div className="sticky top-0 w-full h-[100dvh] overflow-hidden flex items-center justify-center p-4 md:p-8">
+        <div className="w-full max-w-4xl max-h-[75vh] aspect-video relative flex items-center justify-center bg-black/20 rounded-2xl border border-white/10 shadow-2xl overflow-hidden backdrop-blur-sm">
+          <canvas
+            ref={canvasRef}
+            className="w-full h-full block"
+            style={{ mixBlendMode: "normal" }}
+          />
+        </div>
 
         {/* --- Story Overlays --- */}
 
