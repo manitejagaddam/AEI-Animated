@@ -26,7 +26,8 @@ export default function KeyboardScroll() {
 
     const loadImage = (index: number) => {
       const img = new Image();
-      img.src = `/assets/${padIndex(index)}.png`;
+      const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+      img.src = `${basePath}/assets/${padIndex(index)}.png`;
       img.onload = () => {
         if (!isMounted) return;
         loadedImages[index - 1] = img;
